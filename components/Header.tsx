@@ -1,4 +1,4 @@
-import { Sprout } from "lucide-react";
+import Image from "next/image";
 
 const navLinks = [
   { href: "#products", label: "Products" },
@@ -12,7 +12,14 @@ export default function Header() {
       <div className="container-frame">
         <div className="mt-4 flex items-center justify-between gap-4 rounded-full border border-secondary/15 bg-surface-container-lowest/80 px-4 py-2.5 shadow-lg shadow-black/20 backdrop-blur-md sm:px-6">
           <a href="#top" className="flex items-center gap-2.5">
-            <Sprout className="h-5 w-5 text-primary" aria-hidden="true" />
+            <Image
+              src="/pfp.jpg"
+              alt="Ibrahim"
+              width={28}
+              height={28}
+              priority
+              className="h-7 w-7 rounded-full object-cover"
+            />
             <span className="font-display text-title-lg font-semibold text-on-surface">
               Ibrahim
             </span>
