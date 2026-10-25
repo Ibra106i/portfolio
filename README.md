@@ -1,6 +1,6 @@
 # Ibrahim — Portfolio
 
-A single-page portfolio for a solo developer & founder. Built with Next.js 14 (App Router), TypeScript, and Tailwind CSS. The page sits inside a foliage frame over a forest-green gradient.
+Ibrahim's personal portfolio and link-in-bio hub: MoodShift and Livecheck, plus the Storefront Sites agency block. Built with Next.js 14 (App Router), TypeScript, and Tailwind CSS. The page sits inside a foliage frame over a forest-green gradient.
 
 ## Quick start
 
@@ -14,39 +14,33 @@ Open http://localhost:3000.
 ## Project structure
 
 ```
-app/            Layout, page, global styles, favicon
-components/     Header, Hero, Products, Websites, Contact, Footer, frame & garden art
-content/        Editable data: products.ts, sites.ts, links.ts
+app/            Layout (metadata, favicon), page, global styles
+components/     Header, Hero, Products, ProductCard, StorefrontSites,
+                Contact, Footer, frame & garden art
+content/        Editable data: products.ts, links.ts
 public/
   frame/        The four foliage frame images (top, left, right, bottom)
-  products/     Product screenshots (1200x800)
-  sites/        Website screenshots (1200x672)
-scripts/        Placeholder asset generator (dev only)
+  pfp.jpg       Profile photo in the header
+scripts/        Frame art SVGs and their rasterizer
 ```
 
 ## Editing content
 
-All content that changes regularly lives in `content/`:
+- `content/products.ts` — the MoodShift and Livecheck links, plus
+  `livecheckRunOnEverySite`. Set it to `false` to drop the "Used for
+  Storefront Sites audits" link and the Livecheck audit bullet.
+- `content/links.ts` — the contact URL and the GitHub profile.
 
-- `content/products.ts` — the product cards. Replace the `#` URLs with real links.
-- `content/sites.ts` — websites you've built. Keep `kind: "concept"` unless it was a real client project, and only add `result` when you have a real, verifiable outcome.
-- `content/links.ts` — social profile URLs and the contact email.
-
-Section headings and sublines live in the matching component under `components/` (e.g. `Hero.tsx`).
-
-### Contact email
-
-Copy `.env.example` to `.env.local` and set:
-
-```
-NEXT_PUBLIC_CONTACT_EMAIL=you@yourdomain.com
-```
-
-On Netlify, add the same variable under Site configuration → Environment variables.
+The Storefront Sites block lives in `components/StorefrontSites.tsx` and is
+self-contained on purpose: its copy and URLs are in that file so it can move
+to its own domain later.
 
 ## Swapping the frame art
 
-The forest frame is four images in `public/frame/`: `top.webp`, `left.webp`, `right.webp`, `bottom.webp`. Replace them with your own art, keeping the same file names — nothing else needs to change. For no distortion, roughly match these aspects:
+The forest frame is four images in `public/frame/`: `top.webp`, `left.webp`,
+`right.webp`, `bottom.webp`. Replace them with your own art, keeping the same
+file names — nothing else needs to change. For no distortion, roughly match
+these aspects:
 
 - `top.webp` ~1600×360
 - `bottom.webp` ~1600×380
@@ -54,28 +48,25 @@ The forest frame is four images in `public/frame/`: `top.webp`, `left.webp`, `ri
 
 Keep each file under ~150 KB for fast loads.
 
-## Regenerating placeholder images
+## Regenerating the frame images
 
-The frame, product, and site placeholders are generated from SVGs by `scripts/generate-placeholders.mjs`. `sharp` is intentionally not a dependency; install it on demand:
+The frame images are rendered from the SVGs in `scripts/frame-src/`
+(`top.svg`, `left.svg`, `bottom.svg` — the right side is mirrored from the
+left). `sharp` is intentionally not a dependency; install it on demand:
 
 ```bash
 npm install --no-save sharp
 npm run placeholder:assets
 ```
 
-This writes `public/frame/*.webp`, `public/products/*.webp`, and `public/sites/*.webp`. To tweak the frame art, edit the SVGs in `scripts/frame-src/` (`top.svg`, `left.svg`, `bottom.svg` — the right side is mirrored from the left).
-
 ## Deploying to Netlify
 
 1. Push this folder to a Git repository.
 2. In Netlify: **Add new site → Import an existing project** and pick the repo.
 3. Netlify reads `netlify.toml` automatically (build `npm run build`, publish `.next`, Node 20) and installs the Next.js runtime on its own — no extra configuration needed.
-4. Add `NEXT_PUBLIC_CONTACT_EMAIL` under Site configuration → Environment variables, then deploy.
+4. Deploy.
 
 ## TODO checklist
 
-- [ ] Replace `#` links in `content/products.ts` and `content/links.ts`
-- [ ] Replace placeholder entries in `content/sites.ts` with real work
-- [ ] Swap product and site images for real screenshots
-- [ ] Set `NEXT_PUBLIC_CONTACT_EMAIL`
-- [ ] Optionally swap `app/icon.svg` and add an Open Graph image
+- [ ] Swap `public/pfp.jpg` for a current photo
+- [ ] Optionally add an Open Graph image
