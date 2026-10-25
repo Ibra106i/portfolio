@@ -2,7 +2,7 @@ import BotanicalDivider from "@/components/BotanicalDivider";
 import Contact from "@/components/Contact";
 import Hero from "@/components/Hero";
 import Products from "@/components/Products";
-import Websites from "@/components/Websites";
+import StorefrontSites from "@/components/StorefrontSites";
 
 export default function Home() {
   return (
@@ -11,7 +11,7 @@ export default function Home() {
       <BotanicalDivider />
       <Products />
       <BotanicalDivider />
-      <Websites />
+      <StorefrontSites />
       <BotanicalDivider />
       <Contact />
     </>
