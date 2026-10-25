@@ -19,15 +19,23 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+const title = "Ibrahim | MoodShift, Livecheck & Storefront Sites";
+const description =
+  "I build MoodShift, a mood tracker with AI weekly letters, and Livecheck, a website auditor. Storefront Sites builds websites for local businesses.";
+
 export const metadata: Metadata = {
-  title: "Ibrahim — Solo Dev & Founder",
-  description:
-    "Solo developer & founder. Apps, SaaS tools, and websites for local businesses.",
+  title,
+  description,
+  icons: { icon: "/icon.svg" },
   openGraph: {
-    title: "Ibrahim — Solo Dev & Founder",
-    description:
-      "Solo developer & founder. Apps, SaaS tools, and websites for local businesses.",
+    title,
+    description,
     type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title,
+    description,
   },
 };
 
